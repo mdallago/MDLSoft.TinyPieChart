@@ -30,36 +30,21 @@ namespace MDLSoft.TinyPieChart
     public class PieChart
     {
         private readonly List<PieSlice> slices = [];
-        private string title = "Pie Chart";
-        private int width = 800;
-        private int height = 600;
 
         /// <summary>
         /// Gets or sets the title of the pie chart.
         /// </summary>
-        public string Title
-        {
-            get => title;
-            set => title = value ?? "Pie Chart";
-        }
+        public string Title { get; set; } = "Pie Chart";
 
         /// <summary>
         /// Gets or sets the width of the chart in pixels (default: 800).
         /// </summary>
-        public int Width
-        {
-            get => width;
-            set => width = Math.Max(300, value);
-        }
+        public int Width { get; set; } = 800;
 
         /// <summary>
         /// Gets or sets the height of the chart in pixels (default: 600).
         /// </summary>
-        public int Height
-        {
-            get => height;
-            set => height = Math.Max(300, value);
-        }
+        public int Height { get; set; } = 600;
 
         /// <summary>
         /// Gets or sets whether to show a legend (default: true).
@@ -129,7 +114,7 @@ namespace MDLSoft.TinyPieChart
             if (slices.Count == 0)
                 throw new InvalidOperationException("Cannot export pie chart with no slices.");
 
-            Bitmap bitmap = new(width, height);
+            Bitmap bitmap = new(Width, Height);
             using (Graphics g = Graphics.FromImage(bitmap))
             {
                 g.Clear(Color.White);
@@ -185,14 +170,14 @@ namespace MDLSoft.TinyPieChart
             }
 
             // Calculate pie dimensions with summary box adjustment
-            int availableHeight = height - 40; // Space for title
+            int availableHeight = Height - 40; // Space for title
             if (isFullWidthSummary)
             {
                 availableHeight -= (summaryBoxHeight + 20); // Space for summary box
             }
 
-            int pieSize = Math.Min(width, availableHeight) - 100;
-            int pieX = (width - pieSize) / 2;
+            int pieSize = Math.Min(Width, availableHeight) - 100;
+            int pieX = (Width - pieSize) / 2;
             int pieY = 35 + (availableHeight - pieSize) / 2;
 
             // Assign default colors if needed
@@ -226,9 +211,9 @@ namespace MDLSoft.TinyPieChart
         {
             using (Font font = new("Arial", 16, FontStyle.Bold))
             {
-                SizeF titleSize = g.MeasureString(title, font);
-                float x = (width - titleSize.Width) / 2;
-                g.DrawString(title, font, Brushes.Black, x, 10);
+                SizeF titleSize = g.MeasureString(Title, font);
+                float x = (Width - titleSize.Width) / 2;
+                g.DrawString(Title, font, Brushes.Black, x, 10);
             }
         }
 
@@ -252,7 +237,7 @@ namespace MDLSoft.TinyPieChart
             float textY = pieY + (pieSize / 2f) + (float)Math.Sin(midAngleRad) * textRadius;
 
             // Determine what text to display
-            List<string> textLines = new();
+            List<string> textLines = [];
 
             if (ShowLabels && sweepAngle > 8)
             {
@@ -309,7 +294,7 @@ namespace MDLSoft.TinyPieChart
             {
                 int currentX = legendX;
                 int currentY = legendY;
-                int maxHeight = height - legendY - 20;
+                int maxHeight = Height - legendY - 20;
 
                 for (int i = 0; i < slices.Count; i++)
                 {
@@ -371,7 +356,7 @@ namespace MDLSoft.TinyPieChart
             int itemHeight = 18;
 
             // Calculate items per row based on average text width
-            int itemsPerRow = Math.Max(1, (width - (padding * 2)) / 200);
+            int itemsPerRow = Math.Max(1, (Width - (padding * 2)) / 200);
             int numRows = (slices.Count + itemsPerRow - 1) / itemsPerRow;
 
             return (itemHeight * numRows) + (padding * 2);
@@ -393,18 +378,18 @@ namespace MDLSoft.TinyPieChart
             {
                 // Use pre-calculated height
                 boxHeight = preCalculatedHeight > 0 ? preCalculatedHeight : CalculateSummaryBoxHeight();
-                boxWidth = width - (padding * 2);
+                boxWidth = Width - (padding * 2);
                 boxX = padding;
 
                 if (SummaryBoxPosition == SummaryBoxPosition.TopCenter)
                     boxY = 35 + padding;
                 else
-                    boxY = height - boxHeight - padding;
+                    boxY = Height - boxHeight - padding;
             }
             else
             {
                 // Corner positions - single column layout
-                boxWidth = 200;
+                boxWidth = 250;
                 boxHeight = (itemHeight * slices.Count) + (padding * 2);
 
                 switch (SummaryBoxPosition)
@@ -414,17 +399,17 @@ namespace MDLSoft.TinyPieChart
                         boxY = 35 + padding;
                         break;
                     case SummaryBoxPosition.TopRight:
-                        boxX = width - boxWidth - padding;
+                        boxX = Width - boxWidth - padding;
                         boxY = 35 + padding;
                         break;
                     case SummaryBoxPosition.BottomLeft:
                         boxX = padding;
-                        boxY = height - boxHeight - padding;
+                        boxY = Height - boxHeight - padding;
                         break;
                     case SummaryBoxPosition.BottomRight:
                     default:
-                        boxX = width - boxWidth - padding;
-                        boxY = height - boxHeight - padding;
+                        boxX = Width - boxWidth - padding;
+                        boxY = Height - boxHeight - padding;
                         break;
                 }
             }
@@ -438,7 +423,7 @@ namespace MDLSoft.TinyPieChart
             }
 
             // Draw legend items
-            using (Font itemFont = new Font("Arial", 8, FontStyle.Regular))
+            using (Font itemFont = new Font("Arial", 12, FontStyle.Bold))
             {
                 int currentX = boxX + padding;
                 int currentY = boxY + padding;
