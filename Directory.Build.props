@@ -1,0 +1,23 @@
+<Project>
+  
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <WarningsNotAsErrors />
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>MDLSoft</Authors>
+    <Company>MDLSoft</Company>
+    <Product>MDLSoft.TinyPieChart</Product>
+    <Copyright>Copyright © MDLSoft 2026</Copyright>
+    <PackageProjectUrl>https://github.com/mdallago/MDLSoft.TinyPieChart</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mdallago/MDLSoft.TinyPieChart</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+</Project>
