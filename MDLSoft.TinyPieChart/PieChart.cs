@@ -71,6 +71,16 @@ namespace MDLSoft.TinyPieChart
         /// </summary>
         public SummaryBoxPosition SummaryBoxPosition { get; set; } = SummaryBoxPosition.TopRight;
 
+        /// <summary>
+        /// Gets or sets the font size of the summary box (default: 12).
+        /// </summary>
+        public float SummaryBoxFontSize { get; set; } = 12f;
+
+        /// <summary>
+        /// Gets or sets the font size of the slice labels (default: 15).
+        /// </summary>
+        public float SliceFontSize { get; set; } = 15f;
+
 
         /// <summary>
         /// Adds a slice to the pie chart.
@@ -253,7 +263,7 @@ namespace MDLSoft.TinyPieChart
             // Draw text lines
             if (textLines.Count > 0)
             {
-                using (Font font = new("Arial", 9, FontStyle.Bold))
+                using (Font font = new("Arial", SliceFontSize, FontStyle.Bold))
                 {
                     float totalHeight = 0;
                     foreach (var line in textLines)
@@ -423,7 +433,7 @@ namespace MDLSoft.TinyPieChart
             }
 
             // Draw legend items
-            using (Font itemFont = new Font("Arial", 12, FontStyle.Bold))
+            using (Font itemFont = new Font("Arial", SummaryBoxFontSize, FontStyle.Bold))
             {
                 int currentX = boxX + padding;
                 int currentY = boxY + padding;
