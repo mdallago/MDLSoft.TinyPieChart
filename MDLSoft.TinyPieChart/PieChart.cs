@@ -81,6 +81,11 @@ namespace MDLSoft.TinyPieChart
         /// </summary>
         public float SliceFontSize { get; set; } = 15f;
 
+        /// <summary>
+        /// Gets or sets the width of the summary box (default: 270).
+        /// </summary>
+        public int SummaryBoxWidth { get; set; } = 270;
+
 
         /// <summary>
         /// Adds a slice to the pie chart.
@@ -257,7 +262,7 @@ namespace MDLSoft.TinyPieChart
             if (ShowPercentages && sweepAngle > 10)
             {
                 float percentage = (sweepAngle / 360f) * 100f;
-                textLines.Add($"{percentage:F1}%");
+                textLines.Add($"{percentage:F2}%");
             }
 
             // Draw text lines
@@ -377,7 +382,7 @@ namespace MDLSoft.TinyPieChart
             int padding = 10;
             int boxSize = 12;
             int spacing = 5;
-            int itemHeight = 18;
+            int itemHeight = 26;
 
             // Determine position and dimensions
             int boxX, boxY, boxWidth, boxHeight;
@@ -399,7 +404,7 @@ namespace MDLSoft.TinyPieChart
             else
             {
                 // Corner positions - single column layout
-                boxWidth = 250;
+                boxWidth = SummaryBoxWidth;
                 boxHeight = (itemHeight * slices.Count) + (padding * 2);
 
                 switch (SummaryBoxPosition)
@@ -456,7 +461,7 @@ namespace MDLSoft.TinyPieChart
 
                         // Get slice info
                         float percentage = (slices[i].Value / totalValue) * 100f;
-                        string itemText = $"{slices[i].Label} {percentage:F1}%";
+                        string itemText = $"{slices[i].Label} {percentage:F2}%";
 
                         // Draw color box
                         Color color = slices[i].Color ?? Color.Black;

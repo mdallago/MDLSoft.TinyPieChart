@@ -239,7 +239,8 @@ var chart11 = new PieChart
     ShowPercentages = false,
     ShowLabels = false,
     ShowSummaryBox = true,
-    SummaryBoxPosition = SummaryBoxPosition.TopRight
+    SummaryBoxPosition = SummaryBoxPosition.TopRight,
+    SummaryBoxFontSize = 16
 };
 
 chart11.AddSlice("North America", 5500);
