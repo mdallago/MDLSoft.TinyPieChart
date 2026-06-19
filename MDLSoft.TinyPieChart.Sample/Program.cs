@@ -233,7 +233,7 @@ Console.WriteLine("Example 11: Corner summary box (top-right) with legend items.
 var chart11 = new PieChart
 {
     Title = "Revenue by Region",
-    Width = 1000,
+    Width = 1100,
     Height = 700,
     ShowLegend = false,
     ShowPercentages = false,
@@ -247,6 +247,8 @@ chart11.AddSlice("North America", 5500);
 chart11.AddSlice("Europe", 4200);
 chart11.AddSlice("Asia Pacific", 3800);
 chart11.AddSlice("Latin America", 1500);
+chart11.AddSlice("Asia Pacific 2", 3800);
+chart11.AddSlice("Latin America 2", 1500);
 
 string file11 = Path.Combine(outputDir, "example11_summary_corner.jpg");
 chart11.ExportToJpg(file11);

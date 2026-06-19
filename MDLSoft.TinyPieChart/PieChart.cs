@@ -484,7 +484,7 @@ namespace MDLSoft.TinyPieChart
                         currentY = boxY + padding + (i * itemHeight);
 
                         float percentage = (slices[i].Value / totalValue) * 100f;
-                        string itemText = $"{slices[i].Label} {percentage:F1}%";
+                        string itemText = $"{slices[i].Label} {percentage:F2}%";
 
                         // Draw color box
                         Color color = slices[i].Color ?? Color.Black;
